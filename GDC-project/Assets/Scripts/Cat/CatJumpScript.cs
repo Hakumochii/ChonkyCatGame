@@ -83,29 +83,37 @@ public class CatJumpScript : MonoBehaviour
 
     void JumpStart()
     {
-        currentCharge = minJump;
-        toDrawCurve.gameObject.SetActive(true);
+        if (theCatWalk.onGround)
+        {
+            currentCharge = minJump;
+            toDrawCurve.gameObject.SetActive(true);
 
-        isCharging = true;
-        theCatWalk.isJumping = true;
+            isCharging = true;
+            theCatWalk.isJumping = true;
+        }
     }
 
     void JumpEnd()
     {
-        isCharging = false;
+        if (isCharging)
+        {
+            theCatWalk.otherGroundCheck = false;
 
-        // Disables line
-        // toDrawCurve.gameObject.SetActive(false);
+            isCharging = false;
 
-        // transform.forward gives a normalized vector in the direction the character is looking
-        // Makes a normalized vector in the direction of the jump angle times look direction
-        jumpDirection = Vector3.Normalize(Mathf.Cos(jumpAngle * Mathf.Deg2Rad) * transform.forward + new Vector3(0f, Mathf.Sin(jumpAngle * Mathf.Deg2Rad), 0f));
+            // Disables line
+            // toDrawCurve.gameObject.SetActive(false);
 
-        myRb.velocity = currentCharge * jumpMultiplier * jumpDirection;
+            // transform.forward gives a normalized vector in the direction the character is looking
+            // Makes a normalized vector in the direction of the jump angle times look direction
+            jumpDirection = Vector3.Normalize(Mathf.Cos(jumpAngle * Mathf.Deg2Rad) * transform.forward + new Vector3(0f, Mathf.Sin(jumpAngle * Mathf.Deg2Rad), 0f));
 
-        currentCharge = minJump;
+            myRb.velocity = currentCharge * jumpMultiplier * jumpDirection;
 
-        StartCoroutine(JumpDone());
+            currentCharge = minJump;
+
+            StartCoroutine(JumpDone());
+        }
     }
 
     private IEnumerator JumpDone()
@@ -113,6 +121,7 @@ public class CatJumpScript : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         if (!isCharging)
         {
+            theCatWalk.otherGroundCheck = false;
             theCatWalk.isJumping = false;
         }
     }
