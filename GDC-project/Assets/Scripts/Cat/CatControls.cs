@@ -38,9 +38,9 @@ public partial class @CatControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Turning"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Button"",
                     ""id"": ""41819895-5fb2-4be0-9003-8cbc4b2d873f"",
-                    ""expectedControlType"": ""Axis"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false

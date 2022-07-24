@@ -20,6 +20,7 @@ public class CatJumpScript : MonoBehaviour
 
     private bool isCharging = false;
     [SerializeField] public float chargeTime = 3f;
+    [SerializeField] private float chargeSpeed = 3f;
     private float currentCharge = 0f;
     private float chargeDirection = 1f;
 
@@ -45,6 +46,8 @@ public class CatJumpScript : MonoBehaviour
     {
         catControls.Ground.Jump.started += _ => JumpStart();
         catControls.Ground.Jump.canceled += _ => JumpEnd();
+        catControls.Ground.Turning.started += _ => JumpCancel();
+        catControls.Ground.Walking.started += _ => JumpCancel();
 
         currentCharge = minJump;
     }
@@ -53,7 +56,7 @@ public class CatJumpScript : MonoBehaviour
     {
         if (isCharging)
         {
-            currentCharge += Time.deltaTime * chargeDirection;
+            currentCharge += Time.deltaTime * chargeSpeed * chargeDirection;
 
             // Changes the chargedirection if it fills up or empties
             if (currentCharge >= chargeTime)
@@ -66,12 +69,25 @@ public class CatJumpScript : MonoBehaviour
             }
 
             // Tells ArchCalc what the current charge would be in velocity
-            toDrawCurve.velocity = currentCharge * jumpMultiplier;
+            toDrawCurve.DrawThis(currentCharge * jumpMultiplier);
         }
+    }
+
+    void JumpCancel()
+    {
+        Debug.Log("Cancelled jump");
+
+        isCharging = false;
+        currentCharge = 0f;
+        toDrawCurve.gameObject.SetActive(false);
+        theCatWalk.isJumping = false;
     }
 
     void JumpStart()
     {
+        currentCharge = minJump;
+        toDrawCurve.gameObject.SetActive(true);
+
         isCharging = true;
         theCatWalk.isJumping = true;
     }
@@ -82,7 +98,8 @@ public class CatJumpScript : MonoBehaviour
 
         isCharging = false;
 
-        toDrawCurve.velocity = 0f;
+        // Disables line
+        // toDrawCurve.gameObject.SetActive(false);
 
         // transform.forward gives a normalized vector in the direction the character is looking
         // Makes a normalized vector in the direction of the jump angle times look direction
@@ -100,6 +117,9 @@ public class CatJumpScript : MonoBehaviour
     private IEnumerator JumpDone()
     {
         yield return new WaitForSeconds(0.3f);
-        theCatWalk.isJumping = false;
+        if (!isCharging)
+        {
+            theCatWalk.isJumping = false;
+        }
     }
 }
