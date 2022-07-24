@@ -47,7 +47,7 @@ public class TreeDeathSpawn : MonoBehaviour
             // Spawns new tree X meters ahead and remembers its script
             spawnedTreesScript = Instantiate(treePrefabs[Mathf.FloorToInt(Random.Range(0f, treePrefabs.Length))], newSpawnPos, Quaternion.identity).GetComponent<TreeDeathSpawn>();
 
-            spawnedTreesScript.gameObject.GetComponent<TreeJustSpawned>().JustSpawned(transform.position.y);
+            spawnedTreesScript.gameObject.GetComponent<TreeJustSpawned>().JustSpawned(transform.position);
         }
     }
 }
