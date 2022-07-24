@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class CatJumpScript : MonoBehaviour
 {
+    private CatWalkScript theCatWalk;
+
     [SerializeField] private ArchCalc toDrawCurve;
 
     private CatControls catControls;
 
+    [SerializeField] private float minJump = 0.5f;
     [SerializeField] private float jumpMultiplier = 100f;
-    [SerializeField] private float jumpAngle = 45f;
+    [SerializeField] public float jumpAngle = 45f;
 
     private Rigidbody myRb;
 
@@ -24,6 +27,7 @@ public class CatJumpScript : MonoBehaviour
     {
         catControls = new CatControls();
         myRb = GetComponent<Rigidbody>();
+        theCatWalk = GetComponent<CatWalkScript>();
     }
 
     private void OnEnable()
@@ -41,6 +45,8 @@ public class CatJumpScript : MonoBehaviour
     {
         catControls.Ground.Jump.started += _ => JumpStart();
         catControls.Ground.Jump.canceled += _ => JumpEnd();
+
+        currentCharge = minJump;
     }
 
     private void Update()
@@ -54,7 +60,7 @@ public class CatJumpScript : MonoBehaviour
             {
                 chargeDirection = -1f;
             }
-            else if (currentCharge <= 0f)
+            else if (currentCharge <= minJump)
             {
                 chargeDirection = 1f;
             }
@@ -67,6 +73,7 @@ public class CatJumpScript : MonoBehaviour
     void JumpStart()
     {
         isCharging = true;
+        theCatWalk.isJumping = true;
     }
 
     void JumpEnd()
@@ -85,6 +92,14 @@ public class CatJumpScript : MonoBehaviour
         
         myRb.velocity = currentCharge * jumpMultiplier * jumpDirection;
 
-        currentCharge = 0f;
+        currentCharge = minJump;
+
+        StartCoroutine(JumpDone());
+    }
+
+    private IEnumerator JumpDone()
+    {
+        yield return new WaitForSeconds(0.3f);
+        theCatWalk.isJumping = false;
     }
 }
