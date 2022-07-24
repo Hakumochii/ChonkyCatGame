@@ -20,7 +20,7 @@ public class TreeDeathSpawn : MonoBehaviour
     void Update()
     {
         // Once behind the camera, destroy self
-        if (Camera.main.transform.position.z > transform.position.z)
+        if (Camera.main.transform.position.z > transform.position.z + 10)
         {
             Destroy(gameObject);
         }
@@ -46,6 +46,8 @@ public class TreeDeathSpawn : MonoBehaviour
 
             // Spawns new tree X meters ahead and remembers its script
             spawnedTreesScript = Instantiate(treePrefabs[Mathf.FloorToInt(Random.Range(0f, treePrefabs.Length))], newSpawnPos, Quaternion.identity).GetComponent<TreeDeathSpawn>();
+
+            spawnedTreesScript.gameObject.GetComponent<TreeJustSpawned>().JustSpawned(transform.position.y);
         }
     }
 }
