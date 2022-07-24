@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class CameraMoveScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    // Move towards positive Z over time
+    public float moveSpeed = 2f;
 
     // Update is called once per frame
     void Update()
     {
-        
+        transform.position = transform.position + Vector3.forward * moveSpeed * Time.deltaTime;
     }
 }
