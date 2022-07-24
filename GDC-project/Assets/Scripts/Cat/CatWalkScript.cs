@@ -22,7 +22,8 @@ public class CatWalkScript : MonoBehaviour
 
     private Rigidbody myRb;
 
-    [SerializeField] private bool onGround = true;
+    public bool otherGroundCheck = true;
+    public bool onGround = true;
     public bool isJumping = false;
 
     [SerializeField] private LayerMask layersToCheck;
@@ -59,6 +60,14 @@ public class CatWalkScript : MonoBehaviour
         moveInput = catControls.Ground.Walking.ReadValue<float>();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Ground")
+        {
+            otherGroundCheck = true;
+        }
+    }
+
     // FixedUpdate is called once per physics iteration
     private void FixedUpdate()
     {
@@ -67,7 +76,7 @@ public class CatWalkScript : MonoBehaviour
         Vector3 overlapPos = new Vector3(transform.position.x, transform.position.y - 0.18f, transform.position.z - 0.06f);
         Vector3 overlapSize = new Vector3(0.52f, 1.44f, 1.055f);
 
-        if (!isJumping && Physics.BoxCast(overlapPos, overlapSize, Vector3.down, transform.rotation, 0.001f, layersToCheck))
+        if (!isJumping && otherGroundCheck)
         {
             onGround = true;
         }
