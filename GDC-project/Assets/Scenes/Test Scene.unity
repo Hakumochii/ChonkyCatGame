@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 312453949}
   - component: {fileID: 312453948}
   - component: {fileID: 312453947}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Leg (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,7 +164,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 312453945}
-  m_Material: {fileID: 13400000, guid: 8da3647274e47724d8aabc4b4e0c5a6d, type: 2}
+  m_Material: {fileID: 13400000, guid: 53ae829002286eb41ab24fec88b2707a, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5000001
@@ -233,7 +233,7 @@ GameObject:
   - component: {fileID: 663263792}
   - component: {fileID: 663263791}
   - component: {fileID: 663263790}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -447,9 +447,10 @@ GameObject:
   - component: {fileID: 1037422443}
   - component: {fileID: 1037422444}
   - component: {fileID: 1037422445}
-  m_Layer: 0
+  - component: {fileID: 1037422446}
+  m_Layer: 6
   m_Name: Cat
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -499,8 +500,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toDrawCurve: {fileID: 1514307195}
+  minJump: 1
   jumpMultiplier: 2.5
+  jumpAngle: 45
   chargeTime: 3
+--- !u!114 &1037422446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037422442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34e7ce28eef8d8547962db9409378033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 3
+  turnSpeed: 5
+  noSlide: {fileID: 13400000, guid: 8da3647274e47724d8aabc4b4e0c5a6d, type: 2}
+  yesSlide: {fileID: 13400000, guid: 53ae829002286eb41ab24fec88b2707a, type: 2}
+  legsAndBodCol:
+  - {fileID: 1114344008}
+  - {fileID: 1218524772}
+  - {fileID: 1528564982}
+  - {fileID: 1473661467}
+  - {fileID: 312453947}
+  isJumping: 0
+  layersToCheck:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &1114344006
 GameObject:
   m_ObjectHideFlags: 0
@@ -513,7 +542,7 @@ GameObject:
   - component: {fileID: 1114344010}
   - component: {fileID: 1114344009}
   - component: {fileID: 1114344008}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -547,7 +576,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1114344006}
-  m_Material: {fileID: 13400000, guid: 8da3647274e47724d8aabc4b4e0c5a6d, type: 2}
+  m_Material: {fileID: 13400000, guid: 53ae829002286eb41ab24fec88b2707a, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
@@ -616,7 +645,7 @@ GameObject:
   - component: {fileID: 1218524774}
   - component: {fileID: 1218524773}
   - component: {fileID: 1218524772}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -645,7 +674,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1218524770}
-  m_Material: {fileID: 13400000, guid: 8da3647274e47724d8aabc4b4e0c5a6d, type: 2}
+  m_Material: {fileID: 13400000, guid: 53ae829002286eb41ab24fec88b2707a, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5000001
@@ -714,9 +743,9 @@ GameObject:
   - component: {fileID: 1230782784}
   - component: {fileID: 1230782783}
   - component: {fileID: 1230782782}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -812,7 +841,7 @@ GameObject:
   - component: {fileID: 1473661469}
   - component: {fileID: 1473661468}
   - component: {fileID: 1473661467}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Leg (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -841,7 +870,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1473661465}
-  m_Material: {fileID: 13400000, guid: 8da3647274e47724d8aabc4b4e0c5a6d, type: 2}
+  m_Material: {fileID: 13400000, guid: 53ae829002286eb41ab24fec88b2707a, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5000001
@@ -995,7 +1024,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: 0
-  rotation: 45
+  jumpAngle: 45
   catTrans: {fileID: 1037422443}
 --- !u!1 &1528564980
 GameObject:
@@ -1009,7 +1038,7 @@ GameObject:
   - component: {fileID: 1528564984}
   - component: {fileID: 1528564983}
   - component: {fileID: 1528564982}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Leg (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1038,7 +1067,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1528564980}
-  m_Material: {fileID: 13400000, guid: 8da3647274e47724d8aabc4b4e0c5a6d, type: 2}
+  m_Material: {fileID: 13400000, guid: 53ae829002286eb41ab24fec88b2707a, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5000001
