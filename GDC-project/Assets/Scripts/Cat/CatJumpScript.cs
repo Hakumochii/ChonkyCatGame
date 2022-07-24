@@ -75,8 +75,6 @@ public class CatJumpScript : MonoBehaviour
 
     void JumpCancel()
     {
-        Debug.Log("Cancelled jump");
-
         isCharging = false;
         currentCharge = 0f;
         toDrawCurve.gameObject.SetActive(false);
@@ -94,8 +92,6 @@ public class CatJumpScript : MonoBehaviour
 
     void JumpEnd()
     {
-        Debug.Log("jumped with " + (currentCharge * jumpMultiplier).ToString() + " charge");
-
         isCharging = false;
 
         // Disables line
@@ -105,8 +101,6 @@ public class CatJumpScript : MonoBehaviour
         // Makes a normalized vector in the direction of the jump angle times look direction
         jumpDirection = Vector3.Normalize(Mathf.Cos(jumpAngle * Mathf.Deg2Rad) * transform.forward + new Vector3(0f, Mathf.Sin(jumpAngle * Mathf.Deg2Rad), 0f));
 
-        Debug.Log("Direction is " + jumpDirection);
-        
         myRb.velocity = currentCharge * jumpMultiplier * jumpDirection;
 
         currentCharge = minJump;

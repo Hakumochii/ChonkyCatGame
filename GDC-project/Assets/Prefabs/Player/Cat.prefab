@@ -506,6 +506,7 @@ GameObject:
   - component: {fileID: 88428475451849544}
   - component: {fileID: 88428475451849545}
   - component: {fileID: 88428475451849546}
+  - component: {fileID: 1037422447}
   m_Layer: 6
   m_Name: Cat
   m_TagString: Player
@@ -589,6 +590,18 @@ MonoBehaviour:
   layersToCheck:
     serializedVersion: 2
     m_Bits: 128
+--- !u!114 &1037422447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88428475451849550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a3289f41efdd884c9f28eb104462c93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &88428475867488029
 GameObject:
   m_ObjectHideFlags: 0
