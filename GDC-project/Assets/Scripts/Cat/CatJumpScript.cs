@@ -75,8 +75,6 @@ public class CatJumpScript : MonoBehaviour
 
     void JumpCancel()
     {
-        Debug.Log("Cancelled jump");
-
         isCharging = false;
         currentCharge = 0f;
         toDrawCurve.gameObject.SetActive(false);
@@ -85,33 +83,37 @@ public class CatJumpScript : MonoBehaviour
 
     void JumpStart()
     {
-        currentCharge = minJump;
-        toDrawCurve.gameObject.SetActive(true);
+        if (theCatWalk.onGround)
+        {
+            currentCharge = minJump;
+            toDrawCurve.gameObject.SetActive(true);
 
-        isCharging = true;
-        theCatWalk.isJumping = true;
+            isCharging = true;
+            theCatWalk.isJumping = true;
+        }
     }
 
     void JumpEnd()
     {
-        Debug.Log("jumped with " + (currentCharge * jumpMultiplier).ToString() + " charge");
+        if (isCharging)
+        {
+            theCatWalk.otherGroundCheck = false;
 
-        isCharging = false;
+            isCharging = false;
 
-        // Disables line
-        // toDrawCurve.gameObject.SetActive(false);
+            // Disables line
+            // toDrawCurve.gameObject.SetActive(false);
 
-        // transform.forward gives a normalized vector in the direction the character is looking
-        // Makes a normalized vector in the direction of the jump angle times look direction
-        jumpDirection = Vector3.Normalize(Mathf.Cos(jumpAngle * Mathf.Deg2Rad) * transform.forward + new Vector3(0f, Mathf.Sin(jumpAngle * Mathf.Deg2Rad), 0f));
+            // transform.forward gives a normalized vector in the direction the character is looking
+            // Makes a normalized vector in the direction of the jump angle times look direction
+            jumpDirection = Vector3.Normalize(Mathf.Cos(jumpAngle * Mathf.Deg2Rad) * transform.forward + new Vector3(0f, Mathf.Sin(jumpAngle * Mathf.Deg2Rad), 0f));
 
-        Debug.Log("Direction is " + jumpDirection);
-        
-        myRb.velocity = currentCharge * jumpMultiplier * jumpDirection;
+            myRb.velocity = currentCharge * jumpMultiplier * jumpDirection;
 
-        currentCharge = minJump;
+            currentCharge = minJump;
 
-        StartCoroutine(JumpDone());
+            StartCoroutine(JumpDone());
+        }
     }
 
     private IEnumerator JumpDone()
@@ -119,6 +121,7 @@ public class CatJumpScript : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         if (!isCharging)
         {
+            theCatWalk.otherGroundCheck = false;
             theCatWalk.isJumping = false;
         }
     }
