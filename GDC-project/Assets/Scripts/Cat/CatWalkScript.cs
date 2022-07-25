@@ -71,11 +71,6 @@ public class CatWalkScript : MonoBehaviour
     // FixedUpdate is called once per physics iteration
     private void FixedUpdate()
     {
-        // Checks whether the cat is touching ground
-        // if (!isJumping && Physics.Raycast(transform.position, Vector3.down, 0.7f, layersToCheck))
-        Vector3 overlapPos = new Vector3(transform.position.x, transform.position.y - 0.18f, transform.position.z - 0.06f);
-        Vector3 overlapSize = new Vector3(0.52f, 1.44f, 1.055f);
-
         if (!isJumping && otherGroundCheck)
         {
             onGround = true;
@@ -94,10 +89,13 @@ public class CatWalkScript : MonoBehaviour
             }
         }
 
+        // Sets the rotation to new value based on turnspeed and turndirection
+        myRb.MoveRotation(Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnSpeed * turnDirection, 0f)));
+
         if (onGround)
         {
             // Sets the rotation to new value based on turnspeed and turndirection
-            myRb.MoveRotation(Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnSpeed * turnDirection, 0f)));
+            // myRb.MoveRotation(Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnSpeed * turnDirection, 0f)));
 
             // If no input registered
             if (moveInput != 0)

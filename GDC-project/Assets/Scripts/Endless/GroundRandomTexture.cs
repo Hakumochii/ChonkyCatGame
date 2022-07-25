@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class GroundRandomTexture : MonoBehaviour
 {
-    [SerializeField] private Material[] groundMaterials;
+    [SerializeField] private Object[] groundMaterials;
 
     // Start is called before the first frame update
     void Start()
     {
-        //groundMaterials = Resources.
-    }
+        groundMaterials = Resources.LoadAll("Materials/Environment/Ground/", typeof(Material));
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        int a = Random.Range(0, groundMaterials.Length);
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).GetComponent<MeshRenderer>().material = (Material)groundMaterials[a];
+
+        }
     }
 }
