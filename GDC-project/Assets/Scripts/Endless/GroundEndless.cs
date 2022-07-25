@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GroundEndless : MonoBehaviour
 {
-    [SerializeField] private GroundEndless nextGroundScript;
+    private GroundEndless nextGroundScript;
 
     [SerializeField] private GameObject[] groundPrefabs;
     public float vertiMoveSpeed = 0.5f;
@@ -38,7 +38,7 @@ public class GroundEndless : MonoBehaviour
             transform.Translate(Vector3.up * vertiMoveSpeed * Time.deltaTime);
         }
 
-        if (Camera.main.transform.position.z - transform.position.z > 40f)
+        if (Camera.main.transform.position.z - transform.position.z > 60f)
         {
             nextGroundScript.GoSpawn();
             Destroy(gameObject);
@@ -55,7 +55,7 @@ public class GroundEndless : MonoBehaviour
         else
         {
             // If this is within a certain distance of the camera
-            if (transform.position.z - Camera.main.transform.position.z < 110f)
+            if (transform.position.z - Camera.main.transform.position.z < 330f)
             {
                 // Gets location X meters ahead
                 Vector3 newSpawnPos = transform.position + new Vector3(0f, 0f, 30f);
