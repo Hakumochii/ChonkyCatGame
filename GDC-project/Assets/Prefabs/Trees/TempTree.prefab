@@ -145,8 +145,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2759189506dc0e479350f14e55cb6ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstTree: 0
   spawnedTreesScript: {fileID: 0}
-  treePrefabs: []
+  treePrefabs:
+  - {fileID: 6417560977542904577}
   spawnDistance: 5
 --- !u!114 &371513846665544993
 MonoBehaviour:
@@ -160,6 +162,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8f61f098339f1843a599736b31b93cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leafRiseMin: 1
+  leafRiseMax: 2.5
+  minXPlace: -15
+  maxXPlace: 2
+  distanceMin: 5
+  distanceMax: 8
 --- !u!1 &6417560978656396825
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TreeDeathSpawn : MonoBehaviour
 {
+    [SerializeField] private bool firstTree = false;
+
     [SerializeField] private TreeDeathSpawn spawnedTreesScript;
 
     [SerializeField] private GameObject[] treePrefabs;
@@ -13,7 +15,10 @@ public class TreeDeathSpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (firstTree)
+        {
+            GoSpawn();
+        }
     }
 
     // Update is called once per frame
@@ -22,14 +27,11 @@ public class TreeDeathSpawn : MonoBehaviour
         // Once behind the camera, destroy self
         if (Camera.main.transform.position.z > transform.position.z + 10)
         {
+            Debug.Log("Tree destroys self");
+            // Tell the next tree to spawn a tree
+            spawnedTreesScript.GoSpawn();
             Destroy(gameObject);
         }
-    }
-
-    private void OnDestroy()
-    {
-        // Tell the next tree to spawn a tree<s
-        spawnedTreesScript.GoSpawn();
     }
 
     public void GoSpawn()
@@ -41,13 +43,20 @@ public class TreeDeathSpawn : MonoBehaviour
         } // If haven't spawned a tree, spawn one
         else
         {
-            // Gets location X meters ahead
-            Vector3 newSpawnPos = transform.position + new Vector3(0f, 0f, spawnDistance);
+            // If this is within a certain distance of the camera
+            if (transform.position.z - Camera.main.transform.position.z < 90f)
+            {
+                // Gets location X meters ahead
+                Vector3 newSpawnPos = transform.position + new Vector3(0f, 0f, spawnDistance);
 
-            // Spawns new tree X meters ahead and remembers its script
-            spawnedTreesScript = Instantiate(treePrefabs[Mathf.FloorToInt(Random.Range(0f, treePrefabs.Length))], newSpawnPos, Quaternion.identity).GetComponent<TreeDeathSpawn>();
+                // Spawns new tree X meters ahead and remembers its script
+                spawnedTreesScript = Instantiate(treePrefabs[Mathf.FloorToInt(Random.Range(0f, treePrefabs.Length))], newSpawnPos, Quaternion.identity).GetComponent<TreeDeathSpawn>();
 
-            spawnedTreesScript.gameObject.GetComponent<TreeJustSpawned>().JustSpawned(transform.position);
+                spawnedTreesScript.gameObject.GetComponent<TreeJustSpawned>().JustSpawned(transform.position);
+
+                // Spawn another tree further along
+                spawnedTreesScript.GoSpawn();
+            }
         }
     }
 }
