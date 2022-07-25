@@ -8,9 +8,14 @@ public class CameraMoveScript : MonoBehaviour
     public float horiMoveSpeed = 1.5f;
     public float vertiMoveSpeed = 0.5f;
 
+    public bool beginMovement = false;
+
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.forward * horiMoveSpeed * Time.deltaTime + Vector3.up * vertiMoveSpeed * Time.deltaTime);
+        if (beginMovement)
+        {
+            transform.Translate(Vector3.forward * horiMoveSpeed * Time.deltaTime + Vector3.up * vertiMoveSpeed * Time.deltaTime);
+        }
     }
 }
