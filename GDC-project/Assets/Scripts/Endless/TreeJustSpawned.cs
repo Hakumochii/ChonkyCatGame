@@ -32,6 +32,22 @@ public class TreeJustSpawned : MonoBehaviour
         float height = prevPos.y + Random.Range(leafRiseMin, leafRiseMax);
         float distance = prevPos.z + Random.Range(distanceMin, distanceMax);
 
+        // Makes sure the tree hasn't moved too far
+        if (xPlace > prevPos.x + 10f)
+        {
+            xPlace = prevPos.x + 10f;
+        }
+        else if (xPlace < prevPos.x - 10f)
+        {
+            xPlace = prevPos.x - 10f;
+        }
+
+        // Rotates the tree if it's close to the camera
+        if (xPlace > 0f)
+        {
+            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+        }
+
         transform.position = new Vector3(xPlace, height, distance);
     }
 }

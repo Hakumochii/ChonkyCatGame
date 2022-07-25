@@ -24,6 +24,9 @@ public class CatJumpScript : MonoBehaviour
     private float currentCharge = 0f;
     private float chargeDirection = 1f;
 
+    private CameraMoveScript camMoveScript;
+    private bool hasDoneFirstJump = false;
+
     private void Awake()
     {
         catControls = new CatControls();
@@ -48,6 +51,8 @@ public class CatJumpScript : MonoBehaviour
         catControls.Ground.Jump.canceled += _ => JumpEnd();
         catControls.Ground.Turning.started += _ => JumpCancel();
         catControls.Ground.Walking.started += _ => JumpCancel();
+
+        camMoveScript = Camera.main.transform.parent.GetComponent<CameraMoveScript>();
 
         currentCharge = minJump;
     }
@@ -97,6 +102,12 @@ public class CatJumpScript : MonoBehaviour
     {
         if (isCharging)
         {
+            if (!hasDoneFirstJump)
+            {
+                camMoveScript.beginMovement = true;
+                hasDoneFirstJump = true;
+            }
+
             theCatWalk.otherGroundCheck = false;
 
             isCharging = false;
