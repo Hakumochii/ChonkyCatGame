@@ -7,7 +7,6 @@ public class GroundEndless : MonoBehaviour
     private GroundEndless nextGroundScript;
 
     [SerializeField] private GameObject[] groundPrefabs;
-    public float vertiMoveSpeed = 0.5f;
 
     private CameraMoveScript camMoveScript;
     private bool beginMovement = false;
@@ -18,7 +17,6 @@ public class GroundEndless : MonoBehaviour
     void Start()
     {
         camMoveScript = Camera.main.transform.parent.GetComponent<CameraMoveScript>();
-        vertiMoveSpeed = camMoveScript.vertiMoveSpeed;
 
         if (firstGround)
         {
@@ -35,7 +33,7 @@ public class GroundEndless : MonoBehaviour
         }
         else
         {
-            transform.Translate(Vector3.up * vertiMoveSpeed * Time.deltaTime);
+            transform.Translate(Vector3.up * camMoveScript.tempVertiSpeed * Time.deltaTime);
         }
 
         if (Camera.main.transform.position.z - transform.position.z > 60f)

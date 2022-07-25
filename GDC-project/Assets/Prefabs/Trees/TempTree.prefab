@@ -164,8 +164,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leafRiseMin: 1
   leafRiseMax: 2.5
-  minXPlace: -15
-  maxXPlace: 2
+  minXPlace: -10
+  maxXPlace: 3
   distanceMin: 5
   distanceMax: 8
 --- !u!1 &6417560978656396825
