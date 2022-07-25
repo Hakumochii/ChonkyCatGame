@@ -49,7 +49,7 @@ public class CatJumpScript : MonoBehaviour
     {
         catControls.Ground.Jump.started += _ => JumpStart();
         catControls.Ground.Jump.canceled += _ => JumpEnd();
-        catControls.Ground.Turning.started += _ => JumpCancel();
+        // catControls.Ground.Turning.started += _ => JumpCancel();
         catControls.Ground.Walking.started += _ => JumpCancel();
 
         camMoveScript = Camera.main.transform.parent.GetComponent<CameraMoveScript>();
@@ -129,7 +129,7 @@ public class CatJumpScript : MonoBehaviour
 
     private IEnumerator JumpDone()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.1f);
         if (!isCharging)
         {
             theCatWalk.otherGroundCheck = false;
