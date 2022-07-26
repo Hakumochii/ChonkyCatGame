@@ -43,7 +43,7 @@ public class CameraMoveScript : MonoBehaviour
                 tempVertiSpeed = 0;
             }
             
-            if (catTrans.position.z - transform.position.z > 4)
+            if (catTrans.position.z - transform.position.z > horiDistance)
             {
                 float distanceMultiplier = catTrans.position.z - 4 - transform.position.z + 1;
                 tempHoriSpeed = horiMoveSpeed * distanceMultiplier;

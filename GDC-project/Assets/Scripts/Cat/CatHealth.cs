@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CatHealth : MonoBehaviour
 {
-
+    private bool hasDied = false;
 
     // Start is called before the first frame update
     void Start()
@@ -20,14 +20,20 @@ public class CatHealth : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Death" || other.tag == "Enemy")
+        if (!hasDied)
         {
-            Death();
+            if (other.tag == "Death" || other.tag == "Enemy")
+            {
+                hasDied = true;
+                Death();
+            }
         }
     }
 
     void Death()
     {
-        Debug.Log("I am dead");
+        GameObject.Find("GameManager").GetComponent<GameManager>().Death();
+
+        Debug.Log("Chonker am death");
     }
 }
