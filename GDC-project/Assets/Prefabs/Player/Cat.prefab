@@ -1190,6 +1190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fe5f8ef8343dfe44b61caddb850140d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpSFX: {fileID: 8300000, guid: a8a2477cdc3198b4788a0ab093368e85, type: 3}
   toDrawCurve: {fileID: 0}
   minJump: 1.5
   jumpMultiplier: 3.5

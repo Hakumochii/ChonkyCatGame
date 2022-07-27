@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CatJumpScript : MonoBehaviour
 {
+    private AudioSource myAudioSource;
+    [SerializeField] private AudioClip jumpSFX;
+
     private CatWalkScript theCatWalk;
 
     [SerializeField] private ArchCalc toDrawCurve;
@@ -51,6 +54,8 @@ public class CatJumpScript : MonoBehaviour
         catControls.Ground.Jump.canceled += _ => JumpEnd();
         // catControls.Ground.Turning.started += _ => JumpCancel();
         catControls.Ground.Walking.started += _ => JumpCancel();
+
+        myAudioSource = GetComponent<AudioSource>();
 
         camMoveScript = Camera.main.transform.parent.GetComponent<CameraMoveScript>();
 
@@ -113,6 +118,8 @@ public class CatJumpScript : MonoBehaviour
                 camMoveScript.beginMovement = true;
                 hasDoneFirstJump = true;
             }
+
+            myAudioSource.PlayOneShot(jumpSFX);
 
             theCatWalk.otherGroundCheck = false;
 
