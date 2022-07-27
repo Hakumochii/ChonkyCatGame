@@ -13,10 +13,6 @@ public class GroundRandomTexture : MonoBehaviour
 
         int a = Random.Range(0, groundMaterials.Length);
 
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            transform.GetChild(i).GetComponent<MeshRenderer>().material = (Material)groundMaterials[a];
-
-        }
+        GetComponent<MeshRenderer>().material = (Material)groundMaterials[a];
     }
 }
