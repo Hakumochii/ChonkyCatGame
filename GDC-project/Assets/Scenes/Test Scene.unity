@@ -2523,10 +2523,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 589443477, guid: ed93056e350e0df459cdaeb7ea2c45ca, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1037422450, guid: ed93056e350e0df459cdaeb7ea2c45ca, type: 3}
       propertyPath: pointCounter
       value: 
       objectReference: {fileID: 637221598}
+    - target: {fileID: 1323206850, guid: ed93056e350e0df459cdaeb7ea2c45ca, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1333718437, guid: ed93056e350e0df459cdaeb7ea2c45ca, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1622503358, guid: ed93056e350e0df459cdaeb7ea2c45ca, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 88428475451849545, guid: ed93056e350e0df459cdaeb7ea2c45ca,
         type: 3}
       propertyPath: toDrawCurve

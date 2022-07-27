@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CatHealth : MonoBehaviour
 {
+    [SerializeField] private AudioSource myAudioSource;
+
     private bool hasDied = false;
 
     // Start is called before the first frame update
@@ -22,7 +24,12 @@ public class CatHealth : MonoBehaviour
     {
         if (!hasDied)
         {
-            if (other.tag == "Death" || other.tag == "Enemy")
+            if (other.tag == "Death")
+            {
+                hasDied = true;
+                Death();
+            }
+            else if (other.tag == "Enemy")
             {
                 hasDied = true;
                 Death();

@@ -13,7 +13,7 @@ public class CatWalkScript : MonoBehaviour
     [SerializeField] private PhysicMaterial noSlide;
     [SerializeField] private PhysicMaterial yesSlide;
     // Colliders to switch materials on
-    [SerializeField] private BoxCollider[] legsAndBodCol;
+    [SerializeField] private CapsuleCollider[] legsAndBodCol;
 
     private bool canSlide = true;
 
@@ -66,7 +66,27 @@ public class CatWalkScript : MonoBehaviour
         {
             otherGroundCheck = true;
 
+            MakeEverythingSlide(false);
+
             other.gameObject.GetComponent<LeafAddPoint>().AddPoints();
+        }
+    }
+
+    public void MakeEverythingSlide(bool yesOrNo)
+    {
+        if (yesOrNo)
+        {
+            foreach (CapsuleCollider currentPart in legsAndBodCol)
+            {
+                currentPart.material = yesSlide;
+            }
+        }
+        else
+        {
+            foreach (CapsuleCollider currentPart in legsAndBodCol)
+            {
+                currentPart.material = noSlide;
+            }
         }
     }
 
@@ -83,10 +103,7 @@ public class CatWalkScript : MonoBehaviour
             // Makes the cat unable to slide
             if (canSlide)
             {
-                foreach (BoxCollider currentPart in legsAndBodCol)
-                {
-                    currentPart.material = noSlide;
-                }
+                MakeEverythingSlide(false);
                 canSlide = false;
             }
         }
@@ -108,10 +125,7 @@ public class CatWalkScript : MonoBehaviour
                 // Makes the cat able to slide (move)
                 if (!canSlide)
                 {
-                    foreach (BoxCollider currentPart in legsAndBodCol)
-                    {
-                        currentPart.material = yesSlide;
-                    }
+                    MakeEverythingSlide(true);
                     canSlide = true;
                 }
             }
@@ -120,10 +134,7 @@ public class CatWalkScript : MonoBehaviour
                 // Stops the cat from sliding
                 if (canSlide)
                 {
-                    foreach (BoxCollider currentPart in legsAndBodCol)
-                    {
-                        currentPart.material = noSlide;
-                    }
+                    MakeEverythingSlide(false);
                     canSlide = false;
                 }
             }
