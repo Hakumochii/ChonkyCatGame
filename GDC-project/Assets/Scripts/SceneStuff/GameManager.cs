@@ -44,6 +44,11 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
+    public void StartGame()
+    {
+        SceneManager.LoadScene("Test Scene");
+    }
+
     /*
     public void PauseGame()
     {
