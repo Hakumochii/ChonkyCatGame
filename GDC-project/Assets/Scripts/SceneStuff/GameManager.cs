@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject deathScreen;
     [SerializeField] private PointScript pointCounter;
+    [SerializeField] private GameObject regularPointCounter;
 
     // private bool onDeathScreen = false;
 
@@ -27,6 +28,8 @@ public class GameManager : MonoBehaviour
         // Makes the camera not move anymore
         Camera.main.transform.parent.GetComponent<CameraMoveScript>().beginMovement = false;
 
+        regularPointCounter.SetActive(false);
+
         deathScreen.SetActive(true);
 
         // onDeathScreen = true;
@@ -42,6 +45,11 @@ public class GameManager : MonoBehaviour
     public void EndGame()
     {
         Application.Quit();
+    }
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene("Test Scene");
     }
 
     /*
