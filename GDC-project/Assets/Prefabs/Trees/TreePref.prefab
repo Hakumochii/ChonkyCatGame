@@ -57,7 +57,7 @@ MonoBehaviour:
   - 0
   pointsForChances:
   - 0
-  - 5
+  - 1
   myTreeLog: {fileID: 6417560978656396825}
 --- !u!1 &6417560977542904577
 GameObject:

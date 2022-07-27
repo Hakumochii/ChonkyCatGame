@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject deathScreen;
     [SerializeField] private PointScript pointCounter;
 
-    private bool onDeathScreen = false;
+    // private bool onDeathScreen = false;
 
     // Start is called before the first frame update
     void Start()
@@ -26,12 +26,10 @@ public class GameManager : MonoBehaviour
     {
         // Makes the camera not move anymore
         Camera.main.transform.parent.GetComponent<CameraMoveScript>().beginMovement = false;
-        // Destroys cat
-        Destroy(GameObject.FindGameObjectWithTag("Player"));
 
         deathScreen.SetActive(true);
 
-        onDeathScreen = true;
+        // onDeathScreen = true;
 
         pointCounter.SavePoints();
     }
@@ -41,6 +39,12 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    public void EndGame()
+    {
+        Application.Quit();
+    }
+
+    /*
     public void PauseGame()
     {
         if (!onDeathScreen)
@@ -53,4 +57,5 @@ public class GameManager : MonoBehaviour
     {
 
     }
+    */
 }

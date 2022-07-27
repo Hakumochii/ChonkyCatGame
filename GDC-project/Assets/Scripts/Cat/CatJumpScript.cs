@@ -76,6 +76,12 @@ public class CatJumpScript : MonoBehaviour
             // Tells ArchCalc what the current charge would be in velocity
             toDrawCurve.DrawThis(currentCharge * jumpMultiplier);
         }
+
+        // Destroys the model if fallen too far
+        if (transform.position.y < Camera.main.transform.position.y - 52)
+        {
+            Destroy(gameObject);
+        }
     }
 
     void JumpCancel()
