@@ -27,21 +27,21 @@ public class PointScript : MonoBehaviour
     public void AddPoints(int newPoints)
     {
         points += newPoints;
-        currentScoreText.text = "Score: " + points * 10;
+        currentScoreText.text = (points * 10).ToString();
     }
 
     public void SavePoints()
     {
-        endScoreText.text = "Score: " + points * 10;
+        endScoreText.text = (points * 10).ToString();
         if (points > PlayerPrefs.GetInt("Player Highscore"))
         {
             PlayerPrefs.SetInt("Player Highscore", points);
-            highScoreText.text = "New Highscore: " + points * 10;
+            highScoreText.text = (points * 10).ToString();
             highScoreText.color = Color.red;
         }
         else
         {
-            highScoreText.text = "Highscore: " + PlayerPrefs.GetInt("Player Highscore") * 10;
+            highScoreText.text = (PlayerPrefs.GetInt("Player Highscore") * 10).ToString();
         }
     }
 }
