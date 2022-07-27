@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class TreeDeathSpawn : MonoBehaviour
 {
     [SerializeField] private bool firstTree = false;
 
-    [SerializeField] private TreeDeathSpawn spawnedTreesScript;
+    [SerializeField] private GameObject spawnedTree;
 
-    [SerializeField] private GameObject[] treePrefabs;
+    [SerializeField] private Object treePrefab;
 
     [SerializeField] private float spawnDistance = 5f;
 
@@ -28,7 +29,7 @@ public class TreeDeathSpawn : MonoBehaviour
         if (Camera.main.transform.position.z > transform.position.z + 10)
         {
             // Tell the next tree to spawn a tree
-            spawnedTreesScript.GoSpawn();
+            spawnedTree.GetComponent<TreeDeathSpawn>().GoSpawn();
             Destroy(gameObject);
         }
     }
@@ -36,9 +37,9 @@ public class TreeDeathSpawn : MonoBehaviour
     public void GoSpawn()
     {
         // If this has spawned a tree, tell that tree to spawn one
-        if (spawnedTreesScript != null)
+        if (spawnedTree != null)
         {
-            spawnedTreesScript.GoSpawn();
+            spawnedTree.GetComponent<TreeDeathSpawn>().GoSpawn();
         } // If haven't spawned a tree, spawn one
         else
         {
@@ -48,14 +49,26 @@ public class TreeDeathSpawn : MonoBehaviour
                 // Gets location X meters ahead
                 Vector3 newSpawnPos = transform.position + new Vector3(0f, 0f, spawnDistance);
 
+                Debug.Log("I am " + gameObject + " and I shall spawn now");
+
                 // Spawns new tree X meters ahead and remembers its script
-                spawnedTreesScript = Instantiate(treePrefabs[Mathf.FloorToInt(Random.Range(0f, treePrefabs.Length))], newSpawnPos, Quaternion.identity).GetComponent<TreeDeathSpawn>();
+                spawnedTree = PrefabUtility.InstantiatePrefab(treePrefab as GameObject) as GameObject;
+
+                Debug.Log("I am " + gameObject + " and I have " + spawnedTree + " as SpawnedTree");
+
+                Debug.Log("I am " + gameObject + " and I have the JustSpawned script: " + spawnedTree.GetComponent<TreeJustSpawned>());
+
+                Debug.Log("I am " + gameObject + " and I have the DeathSpawn script: " + spawnedTree.GetComponent<TreeDeathSpawn>());
 
                 // Tells new tree to get a position and where this tree was
-                spawnedTreesScript.gameObject.GetComponent<TreeJustSpawned>().JustSpawned(transform.position);
+                spawnedTree.GetComponent<TreeJustSpawned>().JustSpawned(transform.position);
+
+                Debug.Log("I am " + gameObject + " and TreeJustSpawned have been initiated");
 
                 // Spawn another tree further along
-                spawnedTreesScript.GoSpawn();
+                spawnedTree.GetComponent<TreeDeathSpawn>().GoSpawn();
+
+                Debug.Log("I am " + gameObject + " and I just told " + spawnedTree + " to spawn a tree");
             }
         }
     }

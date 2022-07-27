@@ -65,6 +65,8 @@ public class CatWalkScript : MonoBehaviour
         if (other.tag == "Ground")
         {
             otherGroundCheck = true;
+
+            other.gameObject.GetComponent<LeafAddPoint>().AddPoints();
         }
     }
 
