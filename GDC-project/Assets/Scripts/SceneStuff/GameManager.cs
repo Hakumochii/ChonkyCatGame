@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
     public void EndGame()
     {
         Application.Quit();
+        Debug.Log("Quit game");
     }
 
     public void StartGame()

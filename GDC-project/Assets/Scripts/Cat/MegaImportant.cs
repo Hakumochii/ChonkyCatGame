@@ -6,34 +6,33 @@ public class MegaImportant : MonoBehaviour
 {
     private float timeToDIE = 60f;
 
-    private CatControls catControls;
-
     private bool hasBegun = false;
 
     [SerializeField] private float waitTime = 60f;
 
     [SerializeField] private AudioClip thatMeow;
 
-    private void Awake()
-    {
-        catControls = new CatControls();
-    }
-
     // Start is called before the first frame update
     void Start()
     {
-        catControls.Ground.Jump.started += _ => DisableThis();
-
         timeToDIE = Time.time + waitTime;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (timeToDIE <= Time.time && !hasBegun)
+        if (!hasBegun)
         {
-            hasBegun = true;
-            StartCoroutine(DoMeow());
+            if (GetComponent<CatWalkScript>().isJumping)
+            {
+                hasBegun = true;
+            }
+
+            if (timeToDIE <= Time.time)
+            {
+                hasBegun = true;
+                StartCoroutine(DoMeow());
+            }
         }
     }
 
@@ -55,11 +54,5 @@ public class MegaImportant : MonoBehaviour
 
         Application.Quit();
         Debug.Log("Quit the game");
-    }
-
-    void DisableThis()
-    {
-        hasBegun = true;
-        this.enabled = false;
     }
 }
