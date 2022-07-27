@@ -27,7 +27,7 @@ public class CameraMoveScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (beginMovement)
+        if (beginMovement && catTrans != null)
         {
             float tempHoriSpeed = horiMoveSpeed;
 

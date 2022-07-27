@@ -50,14 +50,20 @@ MonoBehaviour:
     type: 3}
   choiceTree: {fileID: 0}
   pointyChance:
-  - 0.2
-  - 0.8
+  - 0.1
+  - 0.25
+  - 0.4
+  - 0.6
   choiceChance:
+  - 0
+  - 0
   - 0
   - 0
   pointsForChances:
   - 0
   - 1
+  - 14
+  - 29
   myTreeLog: {fileID: 6417560978656396825}
 --- !u!1 &6417560977542904577
 GameObject:

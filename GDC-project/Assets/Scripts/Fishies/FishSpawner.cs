@@ -7,39 +7,20 @@ public class FishSpawner : MonoBehaviour
     [SerializeField] private GameObject fishyPrefab;
     private GameObject myFishy;
 
+    [SerializeField] private float fishChance = 0.05f;
+
     // Start is called before the first frame update
     void Start()
     {
-        myFishy = Instantiate(fishyPrefab, transform);
-
-        float xCoord = Random.Range(-0.5f, 0.5f);
-
-        float zCoord = FindZByX(xCoord);
-
-        myFishy.transform.localPosition = new Vector3(xCoord, 0.5f, zCoord);
+        // If random value is less than fish chance
+        if (Random.value <= fishChance)
+        {
+            // Spawn fish and place it somewhere random on the leaf
+            myFishy = Instantiate(fishyPrefab, transform);
+        }
     }
 
-    private float FindZByX(float xCoord)
-    {
-        float endFloat = 0;
-
-        // Do linear equation to find the max X
-        if (xCoord >= 0)
-        {
-            endFloat = -xCoord * 0.5f + 0.5f;
-        }
-        else
-        {
-            endFloat = xCoord * 0.5f + 0.5f;
-        }
-
-        // Choose a random point within the range
-        endFloat = Random.Range(-endFloat, endFloat);
-
-        return endFloat;
-    }
-
-    // Destroys enemy before death to avoid the duplication thingy thing
+    // Destroys fish before death to avoid the duplication thingy thing
     private void OnDestroy()
     {
         Destroy(myFishy);
