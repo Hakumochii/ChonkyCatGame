@@ -2,8 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TreeJustSpawned : MonoBehaviour
+public class NewTreeSpawn : MonoBehaviour
 {
+    [Header("Tree prefab and current tree")]
+    [SerializeField] private GameObject treePrefab;
+    [SerializeField] private Transform lastTree;
+
+    [Header("Tree spawn position")]
     [SerializeField] private float leafRiseMin = 1f;
     [SerializeField] private float leafRiseMax = 2.5f;
 
@@ -20,6 +25,7 @@ public class TreeJustSpawned : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SpawnNewTree();
     }
 
     // Update is called once per frame
@@ -28,7 +34,32 @@ public class TreeJustSpawned : MonoBehaviour
         
     }
 
-    public void JustSpawned(Vector3 prevPos)
+    public void SpawnNewTree()
+    {
+        Vector3 newPosition = RandomisePosition(lastTree.position);
+
+        GameObject justSpawned = Instantiate(treePrefab, transform);
+
+        justSpawned.GetComponent<TreeDeath>().treeSpawner = this;
+
+        lastTree = justSpawned.transform;
+
+        lastTree.position = newPosition;
+
+        // Rotates the tree if it's close to the camera
+        if (newPosition.x > 0f)
+        {
+            lastTree.rotation = Quaternion.Euler(0f, 180f, 0f);
+        }
+
+        if (lastTree.position.z - Camera.main.transform.position.z < 90f)
+        {
+            SpawnNewTree();
+        }
+    }
+
+    // Runs the old TreeJustSpawned script for a randomised position
+    Vector3 RandomisePosition(Vector3 prevPos)
     {
         // Spawn at a randomized height, length and position
         float xPlace = Random.Range(minXPlace, maxXPlace);
@@ -74,15 +105,6 @@ public class TreeJustSpawned : MonoBehaviour
             }
         }
 
-        // Rotates the tree if it's close to the camera
-        if (xPlace > 0f)
-        {
-            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
-        }
-
-        transform.position = new Vector3(xPlace, height, distance);
-
-
-        Debug.Log("I am " + gameObject + " and TreeJustSpawned have been finished");
+        return(new Vector3(xPlace, height, distance));
     }
 }

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject deathScreen;
+    [SerializeField] private PointScript pointCounter;
 
     private bool onDeathScreen = false;
 
@@ -31,6 +32,8 @@ public class GameManager : MonoBehaviour
         deathScreen.SetActive(true);
 
         onDeathScreen = true;
+
+        pointCounter.SavePoints();
     }
 
     public void RestartScene()
