@@ -13,7 +13,7 @@ public class CatWalkScript : MonoBehaviour
     [SerializeField] private PhysicMaterial noSlide;
     [SerializeField] private PhysicMaterial yesSlide;
     // Colliders to switch materials on
-    [SerializeField] private CapsuleCollider[] legsAndBodCol;
+    [SerializeField] private BoxCollider[] legsAndBodCol;
 
     private bool canSlide = true;
 
@@ -83,7 +83,7 @@ public class CatWalkScript : MonoBehaviour
             // Makes the cat unable to slide
             if (canSlide)
             {
-                foreach (CapsuleCollider currentPart in legsAndBodCol)
+                foreach (BoxCollider currentPart in legsAndBodCol)
                 {
                     currentPart.material = noSlide;
                 }
@@ -108,7 +108,7 @@ public class CatWalkScript : MonoBehaviour
                 // Makes the cat able to slide (move)
                 if (!canSlide)
                 {
-                    foreach (CapsuleCollider currentPart in legsAndBodCol)
+                    foreach (BoxCollider currentPart in legsAndBodCol)
                     {
                         currentPart.material = yesSlide;
                     }
@@ -120,7 +120,7 @@ public class CatWalkScript : MonoBehaviour
                 // Stops the cat from sliding
                 if (canSlide)
                 {
-                    foreach (CapsuleCollider currentPart in legsAndBodCol)
+                    foreach (BoxCollider currentPart in legsAndBodCol)
                     {
                         currentPart.material = noSlide;
                     }

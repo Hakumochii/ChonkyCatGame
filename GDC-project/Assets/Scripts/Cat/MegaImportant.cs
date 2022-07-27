@@ -11,6 +11,7 @@ public class MegaImportant : MonoBehaviour
     [SerializeField] private float waitTime = 60f;
 
     [SerializeField] private AudioClip thatMeow;
+    [SerializeField] private Transform camToGo;
 
     // Start is called before the first frame update
     void Start()
@@ -43,8 +44,9 @@ public class MegaImportant : MonoBehaviour
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         GetComponent<Rigidbody>().MoveRotation(transform.rotation);
 
-        Camera.main.transform.position = transform.position + transform.forward * 2 + Vector3.up * 0.5f;
-        Camera.main.transform.rotation = Quaternion.Euler(0f, transform.rotation.eulerAngles.y + 180f, 0f);
+        Camera.main.transform.position = camToGo.position;
+        Camera.main.transform.rotation = camToGo.rotation;
+        Camera.main.nearClipPlane = 0.0001f;
 
         yield return new WaitForSeconds(1.5f);
 
