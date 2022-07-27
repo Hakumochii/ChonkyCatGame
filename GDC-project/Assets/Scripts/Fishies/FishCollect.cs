@@ -8,6 +8,9 @@ public class FishCollect : MonoBehaviour
     private bool hasJustCollectedFish = false;
     private float waitTimeForNextFish = 0f;
 
+    [SerializeField] private AudioSource myAudioSource;
+    [SerializeField] private AudioClip myAudioClip;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +38,7 @@ public class FishCollect : MonoBehaviour
         {
             Destroy(other.transform.parent.gameObject);
             hasJustCollectedFish = true;
+            myAudioSource.PlayOneShot(myAudioClip);
         }
     }
 }
