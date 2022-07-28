@@ -53,13 +53,18 @@ public class CatJumpScript : MonoBehaviour
         catControls.Ground.Jump.started += _ => JumpStart();
         catControls.Ground.Jump.canceled += _ => JumpEnd();
         // catControls.Ground.Turning.started += _ => JumpCancel();
-        catControls.Ground.Walking.started += _ => JumpCancel();
+        catControls.Ground.FullScreen.performed += _ => ToggleFullScreen();
 
         myAudioSource = GetComponent<AudioSource>();
 
         camMoveScript = Camera.main.transform.parent.GetComponent<CameraMoveScript>();
 
         currentCharge = minJump;
+    }
+
+    void ToggleFullScreen()
+    {
+        Screen.fullScreen = !Screen.fullScreen;
     }
 
     private void Update()

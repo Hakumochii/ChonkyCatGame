@@ -53,6 +53,15 @@ public partial class @CatControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FullScreen"",
+                    ""type"": ""Button"",
+                    ""id"": ""08f615a3-e49a-4b8d-8c7a-144543028c3f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -198,6 +207,17 @@ public partial class @CatControls : IInputActionCollection2, IDisposable
                     ""action"": ""Walking"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0f350f87-bacd-46f4-b456-167d5696869c"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FullScreen"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -209,6 +229,7 @@ public partial class @CatControls : IInputActionCollection2, IDisposable
         m_Ground_Jump = m_Ground.FindAction("Jump", throwIfNotFound: true);
         m_Ground_Turning = m_Ground.FindAction("Turning", throwIfNotFound: true);
         m_Ground_Walking = m_Ground.FindAction("Walking", throwIfNotFound: true);
+        m_Ground_FullScreen = m_Ground.FindAction("FullScreen", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -271,6 +292,7 @@ public partial class @CatControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Ground_Jump;
     private readonly InputAction m_Ground_Turning;
     private readonly InputAction m_Ground_Walking;
+    private readonly InputAction m_Ground_FullScreen;
     public struct GroundActions
     {
         private @CatControls m_Wrapper;
@@ -278,6 +300,7 @@ public partial class @CatControls : IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Ground_Jump;
         public InputAction @Turning => m_Wrapper.m_Ground_Turning;
         public InputAction @Walking => m_Wrapper.m_Ground_Walking;
+        public InputAction @FullScreen => m_Wrapper.m_Ground_FullScreen;
         public InputActionMap Get() { return m_Wrapper.m_Ground; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -296,6 +319,9 @@ public partial class @CatControls : IInputActionCollection2, IDisposable
                 @Walking.started -= m_Wrapper.m_GroundActionsCallbackInterface.OnWalking;
                 @Walking.performed -= m_Wrapper.m_GroundActionsCallbackInterface.OnWalking;
                 @Walking.canceled -= m_Wrapper.m_GroundActionsCallbackInterface.OnWalking;
+                @FullScreen.started -= m_Wrapper.m_GroundActionsCallbackInterface.OnFullScreen;
+                @FullScreen.performed -= m_Wrapper.m_GroundActionsCallbackInterface.OnFullScreen;
+                @FullScreen.canceled -= m_Wrapper.m_GroundActionsCallbackInterface.OnFullScreen;
             }
             m_Wrapper.m_GroundActionsCallbackInterface = instance;
             if (instance != null)
@@ -309,6 +335,9 @@ public partial class @CatControls : IInputActionCollection2, IDisposable
                 @Walking.started += instance.OnWalking;
                 @Walking.performed += instance.OnWalking;
                 @Walking.canceled += instance.OnWalking;
+                @FullScreen.started += instance.OnFullScreen;
+                @FullScreen.performed += instance.OnFullScreen;
+                @FullScreen.canceled += instance.OnFullScreen;
             }
         }
     }
@@ -318,5 +347,6 @@ public partial class @CatControls : IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnTurning(InputAction.CallbackContext context);
         void OnWalking(InputAction.CallbackContext context);
+        void OnFullScreen(InputAction.CallbackContext context);
     }
 }
