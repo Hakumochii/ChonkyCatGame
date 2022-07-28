@@ -189,7 +189,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &47185959
 GameObject:
@@ -1757,7 +1757,7 @@ RectTransform:
   - {fileID: 1600455522}
   - {fileID: 1004211682}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2649,7 +2649,7 @@ PrefabInstance:
     - target: {fileID: 81712509529361285, guid: eb91d8a79d641a346a54625f173aca28,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 81712509529361285, guid: eb91d8a79d641a346a54625f173aca28,
         type: 3}
@@ -2664,7 +2664,7 @@ PrefabInstance:
     - target: {fileID: 81712509529361285, guid: eb91d8a79d641a346a54625f173aca28,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -60
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 81712509529361285, guid: eb91d8a79d641a346a54625f173aca28,
         type: 3}
@@ -2700,6 +2700,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1304619301777810378, guid: eb91d8a79d641a346a54625f173aca28,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 92.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3073747472004147135, guid: eb91d8a79d641a346a54625f173aca28,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 120.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289170259325920945, guid: eb91d8a79d641a346a54625f173aca28,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 71.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289170259325920945, guid: eb91d8a79d641a346a54625f173aca28,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 9.300001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5808708395442613675, guid: eb91d8a79d641a346a54625f173aca28,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 72.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5808708395442613675, guid: eb91d8a79d641a346a54625f173aca28,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7528951575961434343, guid: eb91d8a79d641a346a54625f173aca28,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 127.6
       objectReference: {fileID: 0}
     - target: {fileID: 8924733047418422821, guid: eb91d8a79d641a346a54625f173aca28,
         type: 3}
