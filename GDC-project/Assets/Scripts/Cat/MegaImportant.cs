@@ -50,7 +50,7 @@ public class MegaImportant : MonoBehaviour
 
         yield return new WaitForSeconds(1.5f);
 
-        GetComponent<AudioSource>().PlayOneShot(thatMeow);
+        GetComponent<AudioSource>().PlayOneShot(thatMeow, 1f);
 
         yield return new WaitForSeconds(6.2f);
 

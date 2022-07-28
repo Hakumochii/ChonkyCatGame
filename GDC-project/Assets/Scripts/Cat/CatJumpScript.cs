@@ -126,7 +126,7 @@ public class CatJumpScript : MonoBehaviour
 
             theCatWalk.MakeEverythingSlide(true);
 
-            myAudioSource.PlayOneShot(jumpSFX);
+            myAudioSource.PlayOneShot(jumpSFX, 0.15f);
 
             theCatWalk.otherGroundCheck = false;
 
