@@ -839,7 +839,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a3289f41efdd884c9f28eb104462c93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myAudioSource: {fileID: 0}
+  myAudioSource: {fileID: 6875997719129099777}
+  fallSFX: {fileID: 8300000, guid: e69761106fbf44843a340d666cacf4a1, type: 3}
+  crowSFX: {fileID: 8300000, guid: 42fbb3b0831d9ff4792d64cd79b3262e, type: 3}
+  krakra: {fileID: 8300000, guid: 80a9bcdb45b88544aa7cd976f01daf06, type: 3}
+  catScream: {fileID: 8300000, guid: 4d9246f69302af24facebde595b8787d, type: 3}
 --- !u!54 &8498400122407290626
 Rigidbody:
   m_ObjectHideFlags: 0
