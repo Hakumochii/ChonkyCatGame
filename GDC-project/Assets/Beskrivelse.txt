@@ -1,0 +1,19 @@
+Fiskejagten | Den tykke nappers hævn
+
+─────
+
+I en isometrisk platformer, spiller du en tyk cat på jagt efter Kragekongen som har stjålet dine fisk.
+Følg sporende som Kragekongen har efterladt på træernes blade, men være agtig... for Kragekongens undersotter står dig i vejen!
+Brug dine super hop for at hoppe fra blad til blad og undgå fjenderne og få dine stjålne fisk tilbage.
+Hast dig før du taber sporet, kom ej ud af syne.
+
+Bevægelse ─ W+S / Op+Ned
+Drej ─ A+D / Venstre+Højre
+Hop ─ Hold space for at charge. Bevæg dig for at afbryde
+
+Credits:
+Moralsk support: Schtephen
+Programmør: Felix Bengtvig Krog 
+2d - grafik: Amalie Loell
+3d - grafik: Niklas haupt, Stacia Suwan Sørensen
+Lyd: Tze Chung Hugo Ho
