@@ -48,6 +48,8 @@ public class MegaImportant : MonoBehaviour
         Camera.main.transform.rotation = camToGo.rotation;
         Camera.main.nearClipPlane = 0.0001f;
 
+        GameObject.Find("MusicManager").GetComponent<AudioSource>().volume = 0;
+
         yield return new WaitForSeconds(1.5f);
 
         GetComponent<AudioSource>().PlayOneShot(thatMeow, 1f);
